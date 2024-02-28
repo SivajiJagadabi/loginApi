@@ -15,21 +15,41 @@ app.use(express.json())
 let db = null;
 
 
-const InitializeDbAndServer = async () => {
 
-    try {
-        db = await open({
-            filename: databasePath,
-            driver: sqlite3.Database
-        })
-        app.listen(3001, () => {
-            console.log('Server Runnig at Port 3001')
-        })
+
+// const InitializeDbAndServer = async () => {
+
+//     try {
+//         db = await open({
+//             filename: databasePath,
+//             driver: sqlite3.Database
+//         })
+//         app.listen(3002, () => {
+//             console.log('Server Runnig at Port 3002')
+//         })
+//     }
+//     catch (error) {
+//         console.log('DB Error' + `${error.message}`)
+//         process.exit(1)
+//     }
+
+// }
+
+// InitializeDbAndServer()
+
+const InitializeDbAndServer=async()=>{
+   try{ db=await open({
+        filename:databasePath,
+        driver:sqlite3.Database
+    })
+    app.listen(3001,()=>{
+        console.log('Server Running at 3001')
+    })
+}
+    catch(error){
+        console.log(`Databse erorr:+${error.message}`)
     }
-    catch (error) {
-        console.log('DB Error' + `${error.message}`)
-        process.exit(1)
-    }
+
 
 }
 
